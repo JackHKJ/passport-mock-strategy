@@ -1,17 +1,18 @@
 {
-  "name": "passport-mock-strategy",
-  "version": "2.0.0",
+  "name": "@kejiehe/passport-mock-strategy",
+  "version": "2.0.1",
   "description": "Mock passport strategy for testing Node.js applications.",
   "keywords": [
     "passport mock",
     "auth mock"
   ],
   "author": {
-    "name": "Christopher Szatmary",
-    "email": "cs@christopherszatmary.com",
+    "name": "Kejie He, Christopher Szatmary",
+    "email": "kjhe217@gmail.com",
+    "original_author_email": "cs@christopherszatmary.com",
     "url": "https://christopherszatmary.com"
   },
-  "repository": "cszatma/passport-mock-strategy",
+  "repository": "JackHKJ/passport-mock-strategy",
   "bugs": {
     "url": "https://github.com/cszatma/passport-mock-strategy/issues"
   },

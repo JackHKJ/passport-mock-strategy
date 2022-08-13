@@ -4,20 +4,22 @@ import passportModule from 'passport';
 import mockUser, { User } from './mock-user';
 
 export type SerializeFn = (
-  user: User,
+  user: User | any,
   done: (error: any, id: string) => void,
 ) => void;
 export type DeserializeFn = (
   id: string,
-  done: (error: any, user?: User) => void,
+  done: (error: any, user?: User | any) => void,
 ) => void;
 
-const defaultSerialize = (user: User, done: (error: any, id: string) => void) =>
-  done(null, user.id);
+const defaultSerialize = (
+  user: User | any,
+  done: (error: any, id: string) => void,
+) => done(null, user.id);
 
 const defaultDeserialize = (
   id: string,
-  done: (error: any, user?: User) => void,
+  done: (error: any, user?: User | any) => void,
 ) => {
   if (id === mockUser.id) {
     done(null, mockUser);

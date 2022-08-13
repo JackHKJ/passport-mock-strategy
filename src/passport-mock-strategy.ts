@@ -5,24 +5,30 @@ import mockUser, { User } from './mock-user';
 
 export interface MockStrategyOptions {
   name?: string;
-  user?: User;
+  user?: User | any;
   passReqToCallback?: true;
 }
 
-export type DoneCallback = (error: Error, user?: User, info?: any) => void;
+export type DoneCallback = (
+  error: Error,
+  user?: User | any,
+  info?: any,
+) => void;
 
-export interface VerifyFunction {
-  (req: Request, user: User, done: DoneCallback): void;
-  (user: User, done: DoneCallback): void;
-}
+export type VerifyFunction = (user: User | any, done: DoneCallback) => void;
+export type VerifyFunctionWithReq = (
+  req: Request,
+  user: User | any,
+  done: DoneCallback,
+) => void;
 
 /**
  * Mock Passport Strategy for testing purposes.
  * @extends Strategy
  */
 export default class MockStrategy extends Strategy {
-  private _user: User;
-  private _verify?: VerifyFunction;
+  private _user: User | any;
+  private _verify?: VerifyFunction | VerifyFunctionWithReq | any;
   private _passReqToCallback: boolean;
   /**
    * The MockStrategy constructor.
@@ -54,7 +60,10 @@ export default class MockStrategy extends Strategy {
    *  @param {Object} options
    *  @param {Function} verify
    */
-  constructor(options?: MockStrategyOptions, verify?: VerifyFunction) {
+  constructor(
+    options?: MockStrategyOptions,
+    verify?: VerifyFunction | VerifyFunctionWithReq | any,
+  ) {
     // Allows verify to be passed as the first parameter and options skipped
     if (typeof options === 'function') {
       verify = options;
